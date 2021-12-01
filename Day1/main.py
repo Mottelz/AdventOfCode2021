@@ -1,12 +1,5 @@
 from typing import List
-
-
-def read_input(filename: str) -> List[int]:
-    data = []
-    with open(filename, 'r') as file:
-        for line in file.readlines():
-            data.append(int(line))
-    return data
+from utils import read_file_as_ints
 
 
 def is_bigger(prev: int, cur: int) -> bool:
@@ -22,23 +15,18 @@ def part1(numbers: List[int]) -> int:
 
 
 def part2(numbers: List[int]) -> int:
-    a = numbers[0]
-    b = numbers[1]
-    c = numbers[2]
-    d = numbers[3]
-    sum1 = a+b+c
-    sum2 = b+c+d
+    sum1 = numbers[0] + numbers[1] + numbers[2]
+    sum2 = numbers[1] + numbers[2] + numbers[3]
     count = is_bigger(sum1, sum2)
     for i in range(4, len(numbers)):
-        a, b, c, d = b, c, d, numbers[i]
-        sum1, sum2 = sum2, sum2+d-a
+        sum1, sum2 = sum2, sum2 + numbers[i] - numbers[i-3]
         if is_bigger(sum1, sum2):
             count += 1
     return count
 
 
 def main():
-    raw = read_input('input.txt')
+    raw = read_file_as_ints('input.txt')
     print(f"There are {part1(raw)} bigger than previous.")
     print(f"There are {part2(raw)} sums bigger than previous.")
 
