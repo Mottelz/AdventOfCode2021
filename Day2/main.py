@@ -5,8 +5,6 @@ from typing import List
 def process_instruction_for_part1(direction: str, magnitude: int, depth: int, horizontal: int) -> (int, int):
     if direction == 'forward':
         horizontal += magnitude
-    elif direction == 'backward':
-        horizontal -= magnitude
     elif direction == 'down':
         depth += magnitude
     elif direction == 'up':
@@ -18,9 +16,6 @@ def process_instruction_for_part2(direction: str, magnitude: int, depth: int, ho
     if direction == 'forward':
         horizontal += magnitude
         depth += magnitude*aim if aim != 0 else 0
-    elif direction == 'backward':
-        horizontal -= magnitude
-        depth -= magnitude * aim if aim != 0 else 0
     elif direction == 'down':
         aim += magnitude
     elif direction == 'up':
