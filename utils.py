@@ -26,3 +26,11 @@ def read_file_as_binaries(filename: str) -> List[int]:
         for line in file.readlines():
             data.append(int(line, 2))
     return data
+
+
+def read_and_explode_as_ints(filename: str, split_char: str) -> List[int]:
+    temp = []
+    with open(filename, 'r') as file:
+        for line in file.readlines():
+            temp = line.split(split_char)
+    return [int(n) for n in temp]
