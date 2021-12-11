@@ -28,9 +28,16 @@ def read_file_as_binaries(filename: str) -> List[int]:
     return data
 
 
-def read_and_explode_as_ints(filename: str, split_char: str) -> List[int]:
+def read_and_explode_as_ints(filename: str, split_char: str = '') -> List[int]:
     temp = []
-    with open(filename, 'r') as file:
-        for line in file.readlines():
-            temp = line.split(split_char)
-    return [int(n) for n in temp]
+    if len(split_char) != 0:
+        with open(filename, 'r') as file:
+            for line in file.readlines():
+                temp = line.split(split_char)
+        return [int(n) for n in temp]
+    else:
+        with open(filename, 'r') as file:
+            for line in file.readlines():
+                line = line.strip()
+                temp.append([int(n) for n in line])
+        return temp
